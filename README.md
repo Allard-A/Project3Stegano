@@ -1,1 +1,2 @@
-# Project3Stegano
+# Antoine Allard
+# Alexandre Roncin
