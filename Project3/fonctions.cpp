@@ -1,4 +1,6 @@
 #include "fonctions.h"
+
+
 std::ifstream openFileRead(const std::string& path)
 {
     std::ifstream file(path);

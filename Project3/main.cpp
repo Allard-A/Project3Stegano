@@ -1,7 +1,6 @@
 #include "fonctions.h"
 
 
-
 int main(int argc, char** argv)
 {
     std::cout << "Nombre d'arguments : " << argc << std::endl;

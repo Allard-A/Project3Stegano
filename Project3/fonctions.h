@@ -1,8 +1,10 @@
 #pragma once
+
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
 #include <string>
+
 
 std::ifstream openFileRead(const std::string& path);
 
