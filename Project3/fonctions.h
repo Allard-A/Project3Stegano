@@ -1,12 +1,13 @@
 #pragma once
 
+#include <cstdint>
 #include <fstream>
 #include <iostream>
 #include <stdexcept>
 #include <string>
 #include <vector>
-#include <filesystem> // for filesize
 
+// Structure to hold BMP file information. (from header)
 struct BMPInfo
 {
     unsigned int pixelOffset;
@@ -29,14 +30,13 @@ void close(std::ifstream& file);
 void close(std::ofstream& file);
 
 // Displays the bytes of the chosen file.
-void displayFileBytes(std::ifstream& file, unsigned int count);
+void displayFileBytes(std::ifstream& file);
 
 // Creates an identical copy of the chosen file.
 void cloneFile(std::ifstream& file, const std::string& outputPath);
 
 // Compares two files to see if they are identical.
 bool compareFiles(const std::string& path1, const std::string& path2);
-
 
 // Reads the first two bytes of the chosen file to know if the type is BMP.
 bool isBMP(std::ifstream& file);
@@ -54,25 +54,22 @@ BMPInfo getBMPInfo(std::ifstream& file);
 unsigned int getPixelComponentOffset(const BMPInfo& info, unsigned int index);
 
 // Reads the byte at the specified offset.
-unsigned char readByteAt(std::ifstream& file, unsigned int offset);
+std::uint8_t readByteAt(std::ifstream& file, unsigned int offset);
 
 // Writes a bit to the least significant bit of the byte at the specified offset.
-void writeLSB(std::fstream& file, unsigned int offset, unsigned char bit);
+void writeLSB(std::fstream& file, unsigned int offset, std::uint8_t bit);
 
 // Reads the least significant bit of the byte at the specified offset.
-unsigned char readLSB(std::ifstream& file, unsigned int offset);
+std::uint8_t readLSB(std::ifstream& file, unsigned int offset);
 
 // Hides one complete byte inside eight color components.
-void hideByte(std::fstream& file, const BMPInfo& info,
-              unsigned int startIndex, unsigned char value);
+void hideByte(std::fstream& file, const BMPInfo& info, unsigned int startIndex, std::uint8_t value);
 
 // Extracts one complete byte from eight color components.
-unsigned char extractByte(std::ifstream& file, const BMPInfo& info, unsigned int startIndex);
+std::uint8_t extractByte(std::ifstream& file, const BMPInfo& info, unsigned int startIndex);
 
-// Transforms a char into an ascii uint8_t.
-uint8_t charToASCII(char& letter);
+// Transforms a char into its ASCII value.
+std::uint8_t charToASCII(char letter);
 
-// Transforms a string into an ascii vector.
-std::vector<uint8_t> strToASCII(std::string text);
-
-// 
+// Transforms a string into an ASCII vector (that stores the ASCII values of each character).
+std::vector<std::uint8_t> strToASCII(const std::string& text);
