@@ -8,13 +8,14 @@
 // - Add a command to clone a BMP file.
 // - Add a command to handle the Xor cypher for the hidden message. (both encode and decode)
 
+
+// Commands should look like this : project3.exe <command> <args>
 int main(int argc, char** argv)
 {
-    std::cout << "Nombre d'arguments : " << argc << std::endl;
-
-    for (int i = 0; i < argc; i++)
+	// Checks if a command is specified
+    if (argc < 2)
     {
-        std::cout << "Argument " << i << " : " << argv[i] << std::endl;
+        std::cout << "No command specified." << std::endl;
+        return 1;
     }
-    return 0;
 }
