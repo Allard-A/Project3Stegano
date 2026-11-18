@@ -3,7 +3,7 @@
 // WIP : 
 // - Add more commentaries to make the code easier to understand.
 // - Add a function to decode the hidden message in the BMP file.
-// - Add a function to handle the Xor cypher for the hidden message.
+// - Add a function to handle the Xor cypher (with a key obviously) for the hidden message.
 
 static unsigned short readUInt16At(std::ifstream& file, unsigned int offset)
 {

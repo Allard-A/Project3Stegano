@@ -6,7 +6,7 @@
 // - Add a command to decode a message from a BMP file.
 // - Add a command to compare two BMP files to see if they are identical. (check if any has the secret message)
 // - Add a command to clone a BMP file.
-// - Add a command to handle the Xor cypher for the hidden message. (both encode and decode)
+// - Add a command to handle the Xor cypher (with a key obviously) for the hidden message. (both encode and decode)
 
 
 // Commands should look like this : project3.exe <command> <args>
