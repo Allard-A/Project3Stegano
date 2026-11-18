@@ -58,12 +58,12 @@ std::ofstream openWrite(const std::string& path)
     return file;
 }
 
-void closeRead(std::ifstream& file)
+void close(std::ifstream& file)
 {
     file.close();
 }
 
-void closeWrite(std::ofstream& file)
+void close(std::ofstream& file)
 {
     file.close();
 }
@@ -106,11 +106,11 @@ void cloneFile(std::ifstream& file, const std::string& outputPath)
     }
 
     if (!output) {
-        closeWrite(output);
+        close(output);
 		throw std::runtime_error("Error while writing to the output file.");
     }
 
-    closeWrite(output);
+    close(output);
     file.clear();
     file.seekg(0);
 }

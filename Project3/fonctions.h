@@ -4,6 +4,8 @@
 #include <iostream>
 #include <stdexcept>
 #include <string>
+#include <vector>
+#include <filesystem> // for filesize
 
 struct BMPInfo
 {
@@ -21,10 +23,10 @@ std::ifstream openRead(const std::string& path);
 std::ofstream openWrite(const std::string& path);
 
 // Closes the chosen file.
-void closeRead(std::ifstream& file);
+void close(std::ifstream& file);
 
 // Closes the chosen file.
-void closeWrite(std::ofstream& file);
+void close(std::ofstream& file);
 
 // Displays the bytes of the chosen file.
 void displayFileBytes(std::ifstream& file, unsigned int count);
@@ -66,3 +68,11 @@ void hideByte(std::fstream& file, const BMPInfo& info,
 
 // Extracts one complete byte from eight color components.
 unsigned char extractByte(std::ifstream& file, const BMPInfo& info, unsigned int startIndex);
+
+// Transforms a char into an ascii uint8_t.
+uint8_t charToASCII(char& letter);
+
+// Transforms a string into an ascii vector.
+std::vector<uint8_t> strToASCII(std::string text);
+
+// 
