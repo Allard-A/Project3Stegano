@@ -7,6 +7,14 @@
 #include <string>
 #include <vector>
 
+// Useful sources used in this project :
+// - https://en.wikipedia.org/wiki/BMP_file_format
+// - https://www.fileformat.info/format/bmp/egff.htm (goes deeper)
+// - I lost the geekforgeeks link
+// - https://cppreference.com/cpp/header/fstream
+// - https://cppreference.com/cpp/header/cstdint
+// - https://cppreference.com/cpp/header/stdexcept
+
 // Structure to hold BMP file information. (from header)
 struct BMPInfo
 {
