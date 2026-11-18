@@ -175,7 +175,7 @@ BMPInfo getBMPInfo(std::ifstream& file)
     }
 
     if (info.width > 0x7FFFFFFF || info.height > 0x7FFFFFFF) {
-        throw std::runtime_error("Unsupported BMP dimensions.");
+        throw std::runtime_error("Unsupported BMP size.");
     }
 
     info.stride = ((info.width * 3 + 3) / 4) * 4;
@@ -191,7 +191,7 @@ BMPInfo getBMPInfo(std::ifstream& file)
 }
 
 unsigned int getPixelComponentOffset(
-    const BMPInfo& info, unsigned int index)
+   const BMPInfo& info, unsigned int index)
 {
     if (index >= info.componentCount) {
         throw std::runtime_error("Pixel index out of range.");
@@ -246,9 +246,8 @@ unsigned char readLSB(std::ifstream& file, unsigned int offset)
     return readByteAt(file, offset) & 1;
 }
 
-void hideByte(
-    std::fstream& file, const BMPInfo& info,
-    unsigned int startIndex, unsigned char value)
+void hideByte(std::fstream& file, const BMPInfo& info,
+   unsigned int startIndex, unsigned char value)
 {
     if (startIndex + 8 > info.componentCount){
         throw std::runtime_error("Not enough pixel components.");
