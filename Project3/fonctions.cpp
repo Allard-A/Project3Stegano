@@ -1,5 +1,10 @@
 #include "fonctions.h"
 
+// WIP : 
+// - Add more commentaries to make the code easier to understand.
+// - Add a function to decode the hidden message in the BMP file.
+// - Add a function to handle the Xor cypher for the hidden message.
+
 static unsigned short readUInt16At(std::ifstream& file, unsigned int offset)
 {
     std::uint8_t bytes[2] = {};
@@ -330,4 +335,42 @@ std::vector<std::uint8_t> strToASCII(const std::string& text)
     }
 
     return result;
+}
+
+void hideString(std::fstream& file, const BMPInfo& info, const std::string& message)
+{
+    // check 1 : can we store the lenght in the image ?
+    if (info.componentCount < 16)
+    {
+        throw std::runtime_error("Image is too small.");
+    }
+
+    // check 2 : is the message longer than the lenght we can store ?
+    if (message.size() > 65535)
+    {
+        throw std::runtime_error("Message is too long.");
+    }
+
+	// check 3 : can we store the message in the image ?
+    if (message.size() > (info.componentCount - 16) / 8)
+    {
+        throw std::runtime_error("Message is too large for this image.");
+    }
+
+    std::uint16_t length = static_cast<std::uint16_t>(message.size());
+
+    for (int i = 0; i < 16; i++)
+    {
+        std::uint8_t bit = (length >> (15 - i)) & 1;
+        unsigned int offset = getPixelComponentOffset(info, i);
+
+        writeLSB(file, offset, bit);
+    }
+
+    std::vector<std::uint8_t> bytes = strToASCII(message);
+
+    for (unsigned int i = 0; i < bytes.size(); i++)
+    {
+        hideByte(file, info, 16 + i * 8, bytes[i]);
+    }
 }

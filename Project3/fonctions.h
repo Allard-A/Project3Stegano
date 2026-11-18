@@ -73,3 +73,7 @@ std::uint8_t charToASCII(char letter);
 
 // Transforms a string into an ASCII vector (that stores the ASCII values of each character).
 std::vector<std::uint8_t> strToASCII(const std::string& text);
+
+// Hides a complete string inside the image.
+// First 2 bytes are used to store the length of the string, then the string is stored.
+void hideString(std::fstream& file, const BMPInfo& info, const std::string& message);
