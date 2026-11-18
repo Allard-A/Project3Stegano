@@ -13,6 +13,7 @@
 // The part that deals with commands should be moved to a separate function to make the code cleaner and easier to read.
 // Also to avoid repetitive code.
 // Good luck Mr Allard I cant do more than that tonight
+
 int main(int argc, char** argv)
 {
 	// Checks if a command is specified
